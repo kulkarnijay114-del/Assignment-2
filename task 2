@@ -1,0 +1,29 @@
+Task Description:-
+The task is to analyze a phishing email sample and identify characteristics that prove it is suspicious or malicious. The objective is to learn how phishing works, spot common red flags, and produce a structured report highlighting all phishing indicators found.
+
+Tools Used:-
+Email client or saved email file (.txt) → To open and read the email.
+Free online email header analyzer (e.g., MxToolbox) To analyze discrepancies in the sender’s email headers.
+
+Hover over URLs in browser : To detect mismatched or fake links.
+
+Basic text/document editor : To prepare the final report of findings.
+
+Detailed Analysis Using Mini Guide:-
+1. Obtaining a phishing email sample For this analysis, a sample phishing email is chosen that claims to be from a bank, requesting the user to verify their account details.
+2. Examining sender’s email address Claimed sender: support@bank-security.com Real sender (from email header): securelogin@unknown-domain.ru Red flag: Domain mismatch and spoofing attempt.
+3. Checking email headers Using a header analyzer, it was found that: The originating IP does not belong to the legitimate bank.SPF/DKIM authentication checks failed.Red flag: Email header inconsistencies show the sender is not genuine.
+4. Identifying suspicious links/attachments Email contains a button: “Verify Account Now” Hover reveals the link goes to: http://malicious-verify-login.ru instead of the bank’s official domain. Red flag: Suspicious link redirecting to a fake login page.
+5. Looking for urgent/threatening language The email states: “Your account will be locked within 24 hours if you do not act immediately.” Red flag: Psychological manipulation (urgency + fear tactic).
+6. Checking mismatched URLs Displayed URL: https://www.bank.com/login Actual link: http://fake-banklogin.net/secure Red flag: Mismatched URLs designed to trick the recipient.
+7. Verifying spelling/grammar errors Example from the email: “Dear Costumer, your acount need verification for keep safe.” Red flag: Spelling mistakes (“Costumer,” “acount”) and poor grammar.
+8. Summarizing phishing traits found Spoofed sender email and mismatched domains.Suspicious link leading to a fake login page.Urgent and threatening language.Poor spelling and grammar.Discrepancies in email headers.
+Final Report (Deliverable)
+Report: Analysis of Phishing Email Sample The suspicious email analyzed appears to be a phishing attempt disguised as a message from a bank. Several phishing indicators were identified:
+Sender Spoofing: The sender’s address pretends to belong to the bank but actually originates from a different, untrusted domain (unknown-domain.ru).
+Email Header Discrepancies: Authentication checks such as SPF/DKIM failed, and the originating IP does not belong to the official bank servers.
+Suspicious Links: A “Verify Account” button directs the recipient to a malicious login page with a mismatched URL (fake-banklogin.net).
+Urgent/Threatening Language: The email threatens that the account will be locked within 24 hours, creating unnecessary panic.
+Grammar and Spelling Errors: Words like “Costumer” and “acount” indicate a lack of professionalism, which is typical in phishing emails.
+Conclusion: This email clearly demonstrates multiple phishing traits including spoofed sender, fake URLs, header manipulation, urgency tactics, and poor grammar. It is highly likely to be a phishing attempt aimed at stealing sensitive banking information.
+
