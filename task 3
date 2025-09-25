@@ -1,0 +1,115 @@
+1) Quick overview + tools you’ll use
+•	Objective: Find common vulnerabilities on your machine and document the most critical ones.
+•	Primary tools (free for home use):
+o	Nessus Essentials — easy to use GUI scanner (free for home/personal). Good beginner friendly option.
+o	Nmap — fast port + service discovery + vulnerability NSE scripts.
+o	Nikto — web server vulnerability scanner (if you run web services locally).
+o	Lynis — Linux host auditing (if you scan a Linux machine).
+o	(Optional) OpenVAS / GVM — Greenbone’s free scanner (strong but more setup-heavy). Consider using Kali Linux which bundles it or a Greenbone Docker image.
+•	What you’ll deliver: vulnerability scan report (see template below) + screenshots of scan results.
+2) Prep: find your local IP and basic checks
+•	Windows: open PowerShell / cmd:
+o	ipconfig → note your IPv4 address (e.g., 192.168.1.100)
+o	netstat -an (see listening ports)
+•	Linux/macOS:
+o	ip addr or ifconfig or hostname -I → note IP
+o	ss -tuln or netstat -tuln
+Decide target: use 127.0.0.1 or localhost to scan the local machine, or the local IP if you plan to scan from another device on your LAN.
+3) Install & run (step-by-step)
+A — Nessus Essentials (easy GUI)
+1.	Sign up for Nessus Essentials (Tenable offers a free activation key for personal use). Download the installer for your OS from Tenable’s site (search “Nessus Essentials”).
+2.	Install:
+o	Windows: run the .msi and follow the installer.
+o	Linux: install the appropriate .rpm/.deb and start the nessusd service.
+3.	Open your browser to https://localhost:8834 (or the host+port the installer gives).
+4.	Activate with the free activation code emailed to you, create an admin account.
+5.	Create a Basic Network Scan:
+o	New Scan → Basic Network Scan.
+o	Target: 127.0.0.1 (or your local IP).
+o	Save → Launch.
+6.	Review results in the web UI. Export PDF/HTML or take screenshots.
+Notes: Nessus has comprehensive plugins and gives CVSS scores, plugin IDs, and remediation suggestions per finding.
+B — Nmap (fast reconnaissance + quick vuln checks)
+Install:
+•	Windows: download from nmap.org (use the installer which includes zenmap GUI optionally).
+•	Linux/macOS: sudo apt install nmap (Ubuntu/Debian) or brew install nmap on macOS.
+Useful commands (run from a terminal):
+•	Quick port + service scan:
+nmap -sS -sV -p- 127.0.0.1
+•	Quick default scripts + service versions:
+nmap -sC -sV 127.0.0.1
+•	Run Nmap vulnerability scripts (takes longer):
+nmap --script vuln 127.0.0.1
+•	Target other host on LAN:
+sudo nmap -sS -sV -p- -T4 192.168.1.100
+Interpretation: -sV reports service + version; --script vuln runs NSE scripts that look for known weak configs. Use results to prioritize targets in Nessus/OpenVAS.
+C — Nikto (if you run web servers locally)
+Install (Linux/macOS):
+sudo apt install nikto     # or download from cirt.net/nikto
+nikto -h http://127.0.0.1:80
+Nikto finds outdated web server headers, common files, insecure scripts.
+D — OpenVAS / GVM (if you want an alternative)
+•	Recommended route: use Kali Linux (it includes GVM/OpenVAS) or follow Greenbone official docs. GVM gives full vulnerability database like Nessus but setup is heavier. If you’re comfortable with Docker, there are maintained GVM images you can run; check Greenbone docs for the current, official image and setup instructions.
+4) Authenticated scans (strongly recommended)
+Authenticated scans inspect configuration/patch levels — more accurate than unauthenticated scans.
+•	Windows target: supply local admin credentials to Nessus/OpenVAS.
+o	Enable Windows remote management options (WinRM) and ensure firewall allows it. Many scanners can use SMB / WMI if you provide DOMAIN\username and password. (Use a dedicated scan account with admin rights.)
+•	Linux target: add an account for scanning (or use SSH key). Ensure sshd is running and the account can sudo for checks if requested.
+•	In Nessus: scan policy → credentials → add Windows / SSH credentials. In OpenVAS: similar credentials tab.
+5) Interpreting results — what to look for
+Scanners will give severity (Critical/High/Medium/Low/Info) and usually a CVSS score.
+Prioritize:
+1.	Critical / High findings on Internet-exposed services (RDP, SSH, SMB, web servers).
+2.	Local privilege escalation or unpatched OS vulnerabilities.
+3.	Default credentials / account misconfigurations.
+4.	Unnecessary open ports/services.
+For each finding, the scanner gives:
+•	Title/Description
+•	Affected asset (IP/hostname + port)
+•	CVSS / severity
+•	Remediation suggestion (patch/upgrad e/disable service)
+•	References (vendor patch links, CVE)
+6) Common fixes & quick mitigations
+•	Apply OS and application updates (Windows Update / apt update && apt upgrade).
+•	Remove or disable unused services (SMBv1, Telnet, old FTP).
+•	Close unnecessary ports in firewall; restrict access to services to trusted IPs.
+•	Replace default/weak passwords; use 2FA where possible.
+•	Limit accounts with administrative privileges.
+•	Configure secure protocols (disable weak ciphers, enable TLS 1.2+ for services).
+•	For web apps: update CMS/plugins, use security headers, disable directory listing.
+7) Validate fixes
+After remediation, re-run the same scan (or re-scan the specific host/ports) and confirm the finding’s status changed to resolved.
+8) Deliverables — what to include in your report
+Your deliverable should contain:
+•	Scan metadata (tool, version, scan date/time, target IP/hostname, type of scan — authenticated or not).
+•	Executive summary (top 3 critical issues, overall risk posture).
+•	Detailed findings table (see template below).
+•	Screenshots of scanner output.
+•	Remediation steps and verification plan.
+•	Re-scan date planned.
+9) Ready-to-use report template (copy/paste into doc or spreadsheet)
+ID	Title	Severity	CVSS	Affected Host:Port	Description	Evidence (screenshot/log)	Recommended Fix	Status (Open/Fixed)
+1	Missing OS security updates	Critical	9.0	192.168.1.100	System missing recent security updates; exposes RCE CVEs	screenshot_nessus_1.png	Apply latest OS updates; reboot	Open
+2	RDP exposed, weak encryption	High	8.2	192.168.1.100:3389	RDP requires weaker cipher/NLA disabled	nmap_rdp.png	Require NLA, limit by firewall, enable MFA	Open
+3	Outdated Apache version	Medium	6.5	127.0.0.1:80	Apache version X.X has directory traversal issue	nikto_apache.png	Update Apache to latest patch	Fixed
+4	Open SSH with weak ciphers	Medium	5.6	192.168.1.100:22	SSH allows weak ciphers/KEX	nmap_ssh.png	Update sshd_config to disable weak ciphers	Open
+(You can add CVE numbers if scanner shows them. Keep screenshots named consistently.)
+10) Short checklist that follows your hint list
+1.	Install Nessus Essentials or OpenVAS (or both) + Nmap.
+2.	Set scan target to 127.0.0.1 or your local IP.
+3.	Start full vulnerability scan (use Basic Network Scan in Nessus or full/default policy).
+4.	Wait for scan to finish (typical scans may take some time depending on scope).
+5.	Review report — sort by severity and exposure (Internet-facing services first).
+6.	Research mitigations for the top findings (vendor KBs, official patches).
+7.	Document the most critical vulnerabilities in the report template above.
+8.	Take screenshots of scan results (Nessus: Export → PDF, or use screenshot tool).
+11) Quick commands & references you can paste/run now
+•	Nmap quick service & vuln script:nmap -sC -sV --script vuln 127.0.0.1
+•	Discover open ports only:nmap -p- 127.0.0.1
+•	Nikto (web server): nikto -h http://127.0.0.1:80
+•	Lynis (Linux system audit):sudo apt install lynis sudo lynis audit system
+12) Final notes & safety
+•	Don’t scan networks/computers you don’t own. Unauthorized scanning can be illegal.
+•	When using credentials for authenticated scans, protect those credentials and delete them from scanner configs if the scanner is on a shared machine.
+•	If you find high-risk vulnerabilities that you cannot fix, isolate the machine (disconnect from network) until patched.
+
