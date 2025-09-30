@@ -1,0 +1,37 @@
+🔹 OObjective
+To understand what makes a password strong and test it using online password strength checkers (e.g., passwordmeter.com).
+Tools Used
+•	Password Strength Checker: passwordmeter.com
+Step 1: Create Multiple Passwords with Varying Complexity
+Here are some example passwords for testing:
+1.	apple (simple, lowercase only)
+2.	Apple123 (mixed case + numbers)
+3.	@pple123! (symbols + mixed case + numbers)
+4.	Str0ng@P4ssw0rd!2025 (long, mixed characters, complex)
+Step 2 & 3: Test Passwords on Strength Checker
+Password	Score/Strength (from tool)	Feedback/Notes
+apple	Very Weak (0–10%)	Too short, only lowercase letters
+Apple123	Weak/Moderate (~40–50%)	Improved by numbers & case, but still predictable
+@pple123!	Strong (~70–80%)	Good mix of symbols, case, numbers
+Str0ng@P4ssw0rd!2025	Very Strong (~90–100%)	Excellent: long length, symbols, numbers, uppercase/lowercase
+Step 4: Best Practices for Creating Strong Passwords
+1.	Use at least 12–16 characters.
+2.	Include uppercase, lowercase, numbers, and symbols.
+3.	Avoid dictionary words, names, or obvious patterns.
+4.	Use passphrases (e.g., “T!gerRunsFast2025!”).
+5.	Do not reuse passwords across accounts.
+Step 5: Tips Learned from Evaluation
+•	Short and simple passwords are easily broken.
+•	Adding numbers and symbols dramatically increases strength.
+•	Length matters: longer passwords are much harder to crack.
+•	Randomness > predictable substitutions (e.g., Pa$$w0rd is still weak).
+Step 6: Common Password Attacks
+•	Brute Force Attack: Tries every possible combination until it finds the password (short/simple ones fall quickly).
+•	Dictionary Attack: Uses common words or leaked password lists.
+•	Hybrid Attack: Combines dictionary words with variations (like Password123).
+Step 7: How Password Complexity Affects Security
+•	Passwords with only lowercase letters are very weak and can be cracked within seconds.
+•	Adding numbers, uppercase, and symbols increases the time needed for cracking.
+•	Longer, more complex passwords (especially random passphrases) can take years or centuries to crack with brute force.
+ Conclusion:
+Password strength depends mainly on length, complexity, and unpredictability. A good practice is to use long passphrases with a mix of characters, and never reuse passwords across accounts.
