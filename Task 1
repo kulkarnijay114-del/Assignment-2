@@ -1,0 +1,41 @@
+Report: Scanning Local Network for Open Ports
+Objective
+To discover open ports on devices in the local network in order to understand potential network exposure and security risks.
+Tools Used
+•	Nmap (free)
+•	Wireshark (optional, for deeper analysis)
+Step 1: Installation
+•	Installed Nmap from the official website: https://nmap.org/download.html.
+Step 2: Identify Local IP Range
+•	Found the local network range using the command:
+o	On Windows: ipconfig → Example: 192.168.1.0/24
+o	On Linux/Mac: ifconfig → Example: 10.0.0.0/24
+Step 3: Run Nmap Scan
+Command used:
+nmap -sS 192.168.1.0/24
+This performs a TCP SYN scan to detect open ports.
+Step 4: Results & Findings (Sample Example)
+IP Address	Open Ports	Possible Services
+192.168.1.1	80, 443	Web server (HTTP/HTTPS)
+192.168.1.10	22	SSH remote access
+192.168.1.15	139, 445	Windows File Sharing
+192.168.1.20	3389	Remote Desktop Protocol
+Step 5: Optional Wireshark Analysis
+•	Used Wireshark to monitor packets during the scan.
+•	Verified TCP handshake attempts and responses from open ports.
+Step 6: Research Common Services
+•	Port 22 (SSH): Secure remote login. If weak passwords are used, can be exploited.
+•	Port 80/443 (Web): Could expose outdated or vulnerable websites.
+•	Port 445 (SMB): Known for ransomware/worm exploits (e.g., WannaCry).
+•	Port 3389 (RDP): Often targeted for brute force attacks.
+Step 7: Potential Security Risks
+1.	Unauthorized Access – Attackers may brute-force SSH or RDP credentials.
+2.	Exploits – Unpatched services on web or SMB ports can be exploited.
+3.	Information Leakage – Open ports can reveal what services/devices are running.
+4.	Malware Spread – Vulnerable file-sharing ports (SMB) may allow malware infection.
+Step 8: Save Scan Report
+•	Results saved as text using:
+•	nmap -sS 192.168.1.0/24 -oN scan_results.txt
+•	Or as HTML:
+•	nmap -sS 192.168.1.0/24 -oX scan_results.xml
+Open ports reveal the services running in your local network. Some ports are necessary (like 443 for HTTPS), but others (like SMB or RDP) can be risky if exposed without strong authentication and patches. Regular scanning with Nmap helps identify vulnerabilities and reduce exposure.
