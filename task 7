@@ -1,0 +1,41 @@
+Objective :
+To identify, analyze, and remove potentially harmful or unnecessary browser extensions that could compromise security, privacy, or performance.
+Tools :
+•	Web Browsers: Google Chrome, Mozilla Firefox
+•	Built-in Extension/Add-ons Manager
+•	Online resources (extension reviews, security forums, official browser stores)
+Procedure : 
+1.	Access Extension Manager
+In Chrome: open the menu, go to More Tools → Extensions.
+In Firefox: open the menu, go to Add-ons and Themes → Extensions.
+2.	Audit Installed Extensions
+Reviewed all installed extensions in the test environment. The extensions included: Grammarly, AdBlock Plus, Google Docs Offline, Video Downloader Pro, and Shopping Deals Finder.
+3.	Permissions and Review Analysis
+Each extension was checked for its permissions and user reviews. For example, extensions requesting access to “read and change all your data on all websites” were flagged as potentially dangerous. Official sources such as the Chrome Web Store and Firefox Add-ons were used to verify trustworthiness.
+4.	Risk Classification
+o	Grammarly: Published by Grammarly Inc. with moderate permissions. It is a trusted and widely used tool, considered safe.
+o	AdBlock Plus: Published by Eyeo GmbH with moderate permissions. Well-established and safe.
+o	Google Docs Offline: Published by Google with minimal permissions. Official and completely safe.
+o	Video Downloader Pro: Published by an unknown developer, requested high-level permissions including access to all browsing data and downloads. Community reviews raised concerns. This extension was identified as suspicious.
+o	Shopping Deals Finder: Published by an unknown developer, requested access to browsing history and showed intrusive behavior such as redirects. Reports indicated malicious intent. This extension was classified as harmful.
+5.	Action Taken :
+Video Downloader Pro and Shopping Deals Finder were removed from the browser due to security risks. Grammarly, AdBlock Plus, and Google Docs Offline were retained as they were safe and useful.
+6.	Browser Restart and Validation :
+After removal, the browser was restarted to confirm changes. The performance noticeably improved, with faster load times and a reduction in intrusive ads and unwanted redirects.
+7.	Security Research :
+Malicious extensions can harm users in several ways:
+o	Stealing login credentials and personal data.
+o	Monitoring and selling browsing history to third parties.
+o	Injecting ads or redirecting users to malicious websites.
+o	Increasing CPU and memory usage, leading to slower performance.
+8.	Documentation :
+The steps taken were documented along with details of the removed extensions and the observed improvements in browser performance.
+Findings: 
+Two suspicious extensions were identified and removed: Video Downloader Pro and Shopping Deals Finder. Three extensions were deemed safe and retained: Grammarly, AdBlock Plus, and Google Docs Offline.
+Conclusion:
+The analysis confirmed that browser extensions can present serious security and privacy threats if not properly vetted. By carefully auditing and removing suspicious extensions, the browser environment became more secure and efficient.
+Best Practices Learned:
+•	Only install extensions from trusted developers.
+•	Regularly audit and remove unused or suspicious extensions.
+•	Always check permissions carefully and avoid those requesting unnecessary or excessive access.
+•	Monitor browser performance, as unusual slowdowns may indicate malicious activity.
