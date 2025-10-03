@@ -1,0 +1,30 @@
+VPN Setup and Role in Privacy Protection
+1.	Choosing a VPN
+I selected ProtonVPN (Free Tier), a reputable free VPN service, and signed up for an account.
+2.	Installation and Connection
+o	Downloaded and installed the ProtonVPN client.
+o	Connected to a nearby VPN server for better speed.
+3.	Verifying Connection
+o	Checked my IP address using whatismyipaddress.com before and after connection.
+o	IP address changed successfully, confirming that traffic was routed through the VPN.
+4.	Testing Encryption
+o	Browsed a website while connected to the VPN.
+o	Confirmed traffic was encrypted and data hidden from the ISP.
+5.	Performance Check
+o	Disconnected VPN and compared browsing speed and IP.
+o	With VPN: slower browsing speed but higher privacy.
+o	Without VPN: faster speed but visible real IP.
+6.	VPN Security Features
+o	Encrypts internet traffic using strong protocols (AES-256).
+o	Masks the real IP to protect identity and location.
+o	Prevents data tracking and helps bypass geo-restrictions.
+7.	Summary of Benefits and Limitations
+Benefits:
+o	Hides IP and location.
+o	Secures communication with encryption.
+o	Protects against tracking and surveillance.
+o	Provides access to restricted content.
+Limitations:
+o	Free VPNs have limited servers and bandwidth.
+o	Browsing speed may be slower.
+o	Some websites block VPN traffic.
